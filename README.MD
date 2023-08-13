@@ -2,13 +2,9 @@
 
 Welcome to BiscuIT, a baking recipe sharing web application built with Next.js, TypeScript, Prisma, and PostgreSQL.
 
-<<<<<<< HEAD
+
  <p align="center">
   <img src="https://github.com/ihajar/biscuit/blob/start-branch/public/logo.svg" width="150" alt="BiscuIT Logo">
-=======
-<p align="center">
-  <img src="./home/ihajar/Documents/Next-Projects/bakeit/bakeit/public/logo.svg" alt="BiscuIT Logo">
->>>>>>> 781dc1d (first commit)
 </p>
 
 
