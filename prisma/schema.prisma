@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
+  provider     = "postgresql"
+  url          = env("POSTGRES_PRISMA_URL")
   relationMode = "prisma"
 }
 
@@ -43,8 +43,102 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
+  createdSubiscuits  Subiscuit[] @relation("CreatedBy")
+  username String? @unique
 
   image    String?
   accounts Account[]
   sessions Session[]
+
+  Recipe       Recipe[]
+  Comment      Comment[]
+  CommentVote  CommentVote[]
+  Vote         Vote[]
+  Subscription Subscription[]
+}
+
+model Subiscuit {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  recipes   Recipe[]
+
+  creatorId  String?
+  Creator    User?          @relation("CreatedBy", fields: [creatorId], references: [id])
+  subscriber Subscription[]
+
+  @@index([name])
+}
+
+model Subscription {
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  subiscuit   Subiscuit @relation(fields: [subiscuitId], references: [id])
+  subiscuitId String
+
+  @@id([userId, subiscuitId])
+}
+
+model Recipe {
+  id          String    @id @default(cuid())
+  title       String
+  photo       String?
+  description String
+  ingredients String[]
+  steps       Json?
+  cooktime    DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  subiscuit   Subiscuit @relation(fields: [subiscuitId], references: [id])
+  subiscuitId String
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+
+  comments Comment[]
+  votes     Vote[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  text      String
+  createdAt DateTime @default(now())
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+  recipe     Recipe     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+
+  replyToId String?
+  replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  replies   Comment[] @relation("ReplyTo")
+
+  votes     CommentVote[]
+  commentId String?
+}
+
+
+enum VoteType {
+  UP
+  DOWN
+}
+
+model Vote {
+  user     User     @relation(fields: [userId], references: [id])
+  userId   String
+  recipe   Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  recipeId String
+  type     VoteType
+
+  @@id([userId, recipeId])
+}
+
+model CommentVote {
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  commentId String
+  type      VoteType
+
+  @@id([userId, commentId])
 }
