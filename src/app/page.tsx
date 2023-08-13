@@ -14,7 +14,7 @@ export default function Home() {
       <div className="overflow-hidden h-fit rounded-lg border border-[#B6F7F7] order-first m:order-last">
         <div className="bg-[#DAFBFB] px-6 py-4">
           <p className="font-semibold py-3 flex items-center gap-1.5">
-            <CookieIcon className="w-4 h-4" />
+            <CookieIcon className="w-6 h-6" />
             Home
           </p>
         </div>
@@ -23,7 +23,7 @@ export default function Home() {
           <div className="flex justify-between gap-x-4 py-3">
             <p className="text-slate-500">
               Your Personal Biscuit hoempage. come here to check in 
-              with your favorite baking communites
+              with your favorite baking communities.
             </p>
           </div>
 
