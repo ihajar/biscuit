@@ -29,7 +29,7 @@ export default function Home() {
 
           <Link className={buttonVariants({
             className: 'w-full mt-4 mb-6'
-          })} href='/r/create'>Create Community</Link>
+          })} href='/bs/create'>Create Community</Link>
         </div>
       </div>
     </div>

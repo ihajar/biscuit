@@ -9,13 +9,13 @@ import axios, { AxiosError } from "axios"
 import { CreateSubiscuitPayload } from "@/lib/validators/subiscuit"
 import { ChefHatIcon } from "lucide-react"
 import { toast } from "@/hooks/use-toast"
-import { useCustomToast } from "@/hooks/use-custom-toast"
+import { useCustomToasts } from "@/hooks/use-custom-toasts"
 
 
 const Page = () => {
     const [input, setInput] = useState<string>('')
     const router = useRouter()
-    const {loginToast} = useCustomToast()
+    const {loginToast} = useCustomToasts()
 
     const {mutate: createCommunity, isLoading} = useMutation({
         mutationFn: async () => {
@@ -53,7 +53,7 @@ const Page = () => {
             })
         },
         onSuccess: (data) => {
-            router.push(`/r/${data}`)
+            router.push(`/bs/${data}`)
         },
     }) 
 
@@ -72,7 +72,7 @@ const Page = () => {
 
                     <div className="relative">
                         <p className="absolute text-sm left-0 w-8 inset-y-0 grid place-items-center text-slate-400">
-                            <ChefHatIcon className="w-3 h-3" />
+                            <ChefHatIcon className="w-3 h-3" /> 
                         </p>
                         <Input 
                             value={input} 
@@ -83,7 +83,10 @@ const Page = () => {
                 </div>
 
                 <div className="flex justify-end gap-4">
-                    <Button variant='subtle' onClick={() => router.back()}>
+                    <Button 
+                        variant='subtle' 
+                        onClick={() => router.back()}
+                    >
                         Cancel
                     </Button>
                     <Button 

@@ -5,7 +5,7 @@ export const SubiscuitValidator = z.object({
 })
 
 export const SubiscuitSubscriptionValidator = z.object({
-    subiscuitId: z.string()
+    subiscuitId: z.string(),
 })
 
 export type CreateSubiscuitPayload = z.infer<typeof SubiscuitValidator>
