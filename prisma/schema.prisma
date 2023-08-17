@@ -83,11 +83,7 @@ model Subscription {
 model Recipe {
   id          String    @id @default(cuid())
   title       String
-  photo       String?
-  description String
-  ingredients String[]
-  steps       Json?
-  cooktime    DateTime
+  directions  Json?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   subiscuit   Subiscuit @relation(fields: [subiscuitId], references: [id])

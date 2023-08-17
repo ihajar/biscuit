@@ -4,6 +4,8 @@ import { format } from "date-fns"
 import { ChefHatIcon } from "lucide-react"
 import { notFound } from "next/navigation"
 import SubscribeLeaveToggle from "@/components/SubscribeLeaveToggle"
+import Link from "next/link"
+import { buttonVariants } from "@/components/ui/Button"
 
 const Layout = async ({
     children,
@@ -100,6 +102,16 @@ const Layout = async ({
                                     subiscuitName={subiscuit.name}  
                                 />
                             ): null}
+
+                            <Link 
+                                href={`bs/${slug}/submit`}
+                                className={buttonVariants({
+                                    variant: 'outline',
+                                    className: 'w-full mb-6'
+                                })}
+                            >
+                                Create Recipe
+                            </Link>
                         </dl>
                     </div>
                 </div>
