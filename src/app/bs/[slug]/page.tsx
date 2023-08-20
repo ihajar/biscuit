@@ -6,6 +6,8 @@ import { db } from '@/lib/db'
 import { notFound } from 'next/navigation'
 import { ChefHatIcon } from "lucide-react"
 
+import PostFeed from '@/components/PostFeed'
+
 interface PageProps {
     params: {
         slug: string
@@ -47,7 +49,7 @@ const page = async ({ params }: PageProps) => {
             
         </h1>
         <MiniCreatePost session={session} />
-        {/* TODO: show posts in user's feed */}
+        <PostFeed initialRecipes={subiscuit.recipes} subiscuitName={subiscuit.name} />
     </>  
   )
 }

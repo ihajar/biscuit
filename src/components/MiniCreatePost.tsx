@@ -33,7 +33,7 @@ const MiniCreatePost: FC<MiniCreatePostProps> = ({ session }) => {
             <Input
                 onClick={() => router.push(pathname + '/submit')}
                 readOnly
-                placeholder='Create recipe'
+                placeholder='Create your community'
             />
 
             <Button

@@ -69,7 +69,7 @@ const Editor: React.FC<EditorProps> = ({ subiscuitId }) => {
             router.refresh()
     
             return toast({
-                description: 'Your recipe has been published successfuly!',
+                description: 'Your recipe has been published successfuly! 🎉',
             })
         }
        })
@@ -85,7 +85,7 @@ const Editor: React.FC<EditorProps> = ({ subiscuitId }) => {
         const LinkTool = (await import('@editorjs/link')).default
         const InlineCode = (await import('@editorjs/inline-code')).default
         const ImageTool = (await import('@editorjs/image')).default
-        // const DesciptContent = (await import('@editorjs/paragraph')).default
+        const CheckList = (await import('@editorjs/checklist')).default
 
 
         if(!ref.current) {
@@ -126,6 +126,7 @@ const Editor: React.FC<EditorProps> = ({ subiscuitId }) => {
                     inlinecode: InlineCode,
                     table: Table, 
                     embed: Embed,
+                    checklist: CheckList,
                 },
             })
         }
