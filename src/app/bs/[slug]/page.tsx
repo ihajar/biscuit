@@ -30,7 +30,7 @@ const page = async ({ params }: PageProps) => {
                     subiscuit: true,
                 },
                 orderBy: {
-                    createdAt: 'desc'
+                    createdAt: 'desc',
                 },
                 take: INFINITE_SCROLL_PAGINATION_RESULTS,
             },

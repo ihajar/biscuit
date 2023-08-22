@@ -1,7 +1,7 @@
 'use client'
 
 import { ExtendedRecipe } from '@/types/db'
-import { FC, useRef } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import { useIntersection } from '@mantine/hooks'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { INFINITE_SCROLL_PAGINATION_RESULTS } from '@/config'
@@ -38,6 +38,12 @@ const PostFeed: FC<PostFeedProps> = ({ initialRecipes, subiscuitName }) => {
             initialData: { pages: [initialRecipes], pageParams: [1] },
         }
     )
+
+    useEffect(() => {
+        if(entry?.isIntersecting) {
+            fetchNextPage()
+        }
+    }, [entry, fetchNextPage])
 
     const recipes = data?.pages.flatMap((page) => page) ?? initialRecipes
 

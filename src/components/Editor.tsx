@@ -122,6 +122,12 @@ const Editor: React.FC<EditorProps> = ({ subiscuitId }) => {
                             }
                         }
                     },
+                    // gallery: {
+                    //     class: ImageGallery,
+                    //     config: {
+                    //         endpo
+                    //     }
+                    // },
                     list: List,
                     inlinecode: InlineCode,
                     table: Table, 

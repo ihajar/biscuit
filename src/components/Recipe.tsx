@@ -39,19 +39,19 @@ const Recipe: FC<RecipeProps> = ({
           
         />
         <div className='w-0 flex-1'>
-          <div className='max-h-40 ml-1 text-xs text-slate-500'>
+          <div className='max-h-40 ml-1 text-xs text-slate-500 flex flex-row w-full justify-start'>
             {subiscuitName ? (
               <>
                 <a 
                   href={`/bs/${subiscuitName}`} 
-                  className='underline text-slate-900 text-sm underline-offset-2 flex flex-row max-w-md justify-start'
+                  className='underline text-slate-900 text-sm underline-offset-2 flex flex-row justify-start '
                 >
                   <ChefHatIcon className="w-4 h-4 " />{subiscuitName}
                 </a>
                 <span className='px-1'>•</span>
               </>
             ) : null}
-            <span>Created by u/{recipe.author.name}</span>{' '}
+            <span>Created by u/{recipe.author.name}</span>{'   '}
             {formatTimeToNow(new Date(recipe.createdAt))}
           </div>
           <a href={`/bs/${subiscuitName}/recipe/${recipe.id}`}>
@@ -60,26 +60,26 @@ const Recipe: FC<RecipeProps> = ({
             </h1>
           </a>
 
-          <div className='relative text-sm max-h-40 w-full overflow-clip' ref={pRef}>
+          <div className='relative text-sm max-h-40 w-full  overflow-clip' ref={pRef}>
             {/* Recipe content */}
 
             <EditorOutput content={recipe.directions} />
 
             {pRef.current?.clientHeight === 160 ? (
-              <div className='absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-white to-transparent' />
+              <div className='absolute bottom-0 left-0 h-24 w-full bg-transparent' />
             ) : null}
           </div>
         </div>
       </div>
-
-              <div className='bg-slate-50 z-20 text-sm p-4 sm:px-6'>
-              <a 
-                href={`/bs/${subiscuitName}/recipe/${recipe.id}`}
-                className='w-fit flex items-center gap-2'
-              >
-                <MessageSquare className='h-4 w-4' />{commentAmt} comments
-              </a>
-              </div>
+      
+      <div className='bg-white z-20 text-sm p-4 sm:px-6'>
+        <a 
+          href={`/bs/${subiscuitName}/recipe/${recipe.id}`}
+          className='w-fit flex items-center gap-2'
+        >
+          <MessageSquare className='h-4 w-4' />{commentAmt} comments
+        </a>
+      </div>
     </div>
   )
 }
